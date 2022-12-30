@@ -1,8 +1,13 @@
 import time
 import random
 
-monster = random.choice(["dragon", "gorgon", "wicked fairie"])
-protagonist = []
+
+
+
+def choose_monster(randommonster=None):
+    if randommonster is None:
+        randommonster = random.choice(["dragon", "gorgon", "wicked fairie"])
+    return randommonster
 
 
 def print_pause(message_to_print):
@@ -10,10 +15,10 @@ def print_pause(message_to_print):
     time.sleep(1)
 
 
-def intro():
+def intro(randommonster, protagonist):
     print_pause("You find yourself standing in an open field,")
     print_pause("filled with grass and yellow wildflowers.")
-    print_pause(f"Rumor has it that a {monster} is somewhere around here,")
+    print_pause(f"Rumor has it that a {randommonster} is somewhere around here,")
     print_pause("and has been terrifying the nearby village.")
     print_pause("In front of you is a house.")
     print_pause("To your right is a dark cave.")
@@ -21,24 +26,24 @@ def intro():
                 "(but not very effective) dagger.")
 
 
-def approach_house():
+def approach_house(randommonster, protagonist):
     print_pause("You approach the door of the house.")
     print_pause(f"You are about to knock when the door opens "
-                "and out steps a {monster}.")
-    print_pause(f"Eep! This is the {monster}'s house!")
-    print_pause(f"The {monster} attacks you!")
+                f"and out steps a {randommonster}.")
+    print_pause(f"Eep! This is the {randommonster}'s house!")
+    print_pause(f"The {randommonster} attacks you!")
     action_house = input("Would you like to (1) fight or (2) run away?")
     if action_house == "1":
-        fight()
+        fight(randommonster, protagonist)
     if action_house == "2":
-        flea()
+        flea(randommonster, protagonist)
     else:
-        basic_decision()
+        basic_decision(randommonster, protagonist)
 
 
-def fight():
+def fight(randommonster, protagonist):
     if "sword" in protagonist:
-        print_pause(f"the {monster} sees the sword and goes back "
+        print_pause(f"the {randommonster} sees the sword and goes back "
                     "inside. You won.")
         play_again()
     else:
@@ -48,13 +53,13 @@ def fight():
         play_again()
 
 
-def flea():
+def flea(randommonster, protagonist):
     print_pause("You run back into the field. Luckily, "
                 "you don't seem to have been followed.")
-    basic_decision()
+    basic_decision(randommonster, protagonist)
 
 
-def peer_cave():
+def peer_cave(randommonster, protagonist):
     if "sword" in protagonist:
         print_pause("You have been here before.")
     else:
@@ -66,36 +71,38 @@ def peer_cave():
                     "take the sword with you.")
         protagonist.append("sword")
     print_pause("You walk back out to the field.")
-    basic_decision()
+    basic_decision(randommonster, protagonist)
 
 
-def basic_decision():
+def basic_decision(randommonster, protagonist):
     print_pause("Enter 1 to knock on the door of the house.")
     print_pause("Enter 2 to peer into the cave.")
     print_pause("What would you like to do?")
     choice = input("(Please enter 1 or 2.)")
     if choice == '1':
-        approach_house()
+        approach_house(randommonster, protagonist)
     if choice == '2':
-        peer_cave()
+        peer_cave(randommonster, protagonist)
+        return(randommonster, protagonist)
     else:
-        basic_decision()
+        basic_decision(randommonster, protagonist)
 
 
 def play_again():
-    input("Would you like to play again? (y/n)")
-    if input == "y":
+    again = input("Would you like to play again? (y/n)")
+    if again == "y":
         print_pause("Excellent! Restarting the game ...")
         play_game()
-    if input == "n":
+    elif again == "n":
         print_pause("Thanks for playing! See you next time.")
     else:
         play_again()
 
 
 def play_game():
-    intro()
-    basic_decision()
-
+    protagonist = []
+    randommonster = choose_monster()
+    intro(randommonster, protagonist)
+    basic_decision(randommonster, protagonist)
 
 play_game()
