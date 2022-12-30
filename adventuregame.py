@@ -16,7 +16,8 @@ def print_pause(message_to_print):
 def intro(randommonster, protagonist):
     print_pause("You find yourself standing in an open field,")
     print_pause("filled with grass and yellow wildflowers.")
-    print_pause(f"Rumor has it that a {randommonster} is somewhere around here,")
+    print_pause(f"Rumor has it that a {randommonster} is "
+                "somewhere around here,")
     print_pause("and has been terrifying the nearby village.")
     print_pause("In front of you is a house.")
     print_pause("To your right is a dark cave.")
@@ -81,7 +82,7 @@ def basic_decision(randommonster, protagonist):
         approach_house(randommonster, protagonist)
     if choice == '2':
         peer_cave(randommonster, protagonist)
-        return(randommonster, protagonist)
+        return (randommonster, protagonist)
     else:
         basic_decision(randommonster, protagonist)
 
@@ -103,5 +104,5 @@ def play_game():
     intro(randommonster, protagonist)
     basic_decision(randommonster, protagonist)
 
-    
+
 play_game()
