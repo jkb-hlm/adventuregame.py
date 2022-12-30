@@ -2,8 +2,6 @@ import time
 import random
 
 
-
-
 def choose_monster(randommonster=None):
     if randommonster is None:
         randommonster = random.choice(["dragon", "gorgon", "wicked fairie"])
@@ -105,4 +103,5 @@ def play_game():
     intro(randommonster, protagonist)
     basic_decision(randommonster, protagonist)
 
+    
 play_game()
