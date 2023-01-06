@@ -26,8 +26,9 @@ def intro(randommonster, protagonist):
 
 
 def approach_house(randommonster, protagonist):
-    approach_house_text(randommonster,protagonist)
+    approach_house_text(randommonster, protagonist)
     approach_house_action(randommonster, protagonist)
+
 
 def approach_house_text(randommonster, protagonist):
     print_pause("You approach the door of the house.")
