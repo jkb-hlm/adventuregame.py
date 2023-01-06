@@ -26,18 +26,25 @@ def intro(randommonster, protagonist):
 
 
 def approach_house(randommonster, protagonist):
+    approach_house_text(randommonster,protagonist)
+    approach_house_action(randommonster, protagonist)
+
+def approach_house_text(randommonster, protagonist):
     print_pause("You approach the door of the house.")
     print_pause(f"You are about to knock when the door opens "
                 f"and out steps a {randommonster}.")
     print_pause(f"Eep! This is the {randommonster}'s house!")
     print_pause(f"The {randommonster} attacks you!")
+
+
+def approach_house_action(randommonster, protagonist):
     action_house = input("Would you like to (1) fight or (2) run away?")
     if action_house == "1":
         fight(randommonster, protagonist)
     if action_house == "2":
         flea(randommonster, protagonist)
     else:
-        basic_decision(randommonster, protagonist)
+        approach_house_action(randommonster, protagonist)
 
 
 def fight(randommonster, protagonist):
