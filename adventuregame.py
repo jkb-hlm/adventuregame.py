@@ -102,6 +102,7 @@ def play_again():
         play_game()
     elif again == "n":
         print_pause("Thanks for playing! See you next time.")
+        quit()
     else:
         play_again()
 
